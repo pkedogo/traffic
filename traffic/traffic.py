@@ -30,6 +30,7 @@ def main():
 
     # Get a compiled neural network
     model = get_model()
+    
 
     # Fit model on training data
     model.fit(x_train, y_train, epochs=EPOCHS)
