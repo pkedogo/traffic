@@ -29,8 +29,7 @@ def main():
     )
 
     # Get a compiled neural network
-    model = get_model()
-    
+    model = get_model()    
 
     # Fit model on training data
     model.fit(x_train, y_train, epochs=EPOCHS)
@@ -59,7 +58,20 @@ def load_data(data_dir):
     be a list of integer labels, representing the categories for each of the
     corresponding `images`.
     """
-    raise NotImplementedError
+
+    images = []
+    labels = []
+
+    for category in range(NUM_CATEGORIES):
+        category_dir = os.path.join(data_dir, str(category))
+        for filename in os.listdir(category_dir):
+            img_path = os.path.join(category_dir, filename)
+            img = cv2.imread(img_path)
+            img = cv2.resize(img, (IMG_WIDTH, IMG_HEIGHT))
+            images.append(img)
+            labels.append(category)
+
+    return images, labels
 
 
 def get_model():
